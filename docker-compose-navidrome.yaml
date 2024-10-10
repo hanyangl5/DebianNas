@@ -1,0 +1,19 @@
+version: "3"
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    ports:
+      - ${NAVIDROME_WEBUI_PORT}:4533
+    restart: unless-stopped
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 24h
+      ND_BASEURL: ""
+      ND_DEFAULTLANGUAGE: zh-Hans
+      #设置默认语言为简体中文
+      ND_ENABLESHARING: "true"
+      #开启共享功能
+    volumes:
+      - ./navidrome_data:/data
+      - ${MUSICS_PATH}:/music:ro

@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+    aria2-pro:
+        image: p3terx/aria2-pro
+        volumes:
+            - '${DOWNLOAD_PATH}:/downloads'
+            - './aria2_config:/config'
+        ports:
+            - '16888:6888/udp'
+            - '16888:6888'
+            - '16800:6800'
+        environment:
+            - LISTEN_PORT=6888
+            - RPC_PORT=6800
+            - RPC_SECRET=prc_password
+            - UMASK_SET=022
+            - PGID=1000
+            - PUID=1000
+        logging:
+            options:
+                max-size: 1m
+        restart: unless-stopped
+        container_name: aria2

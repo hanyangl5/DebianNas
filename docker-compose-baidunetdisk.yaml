@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+    baidunetdisk:
+        image: 'johngong/baidunetdisk:latest'
+        restart: unless-stopped
+        environment:
+            - VNC_PASSWORD=admin123
+        volumes:
+            - '${DOWNLOAD_PATH}:/config/downloads'
+            - './baidunetdisk_config:/config'
+        ports:
+            - '${BAIDUNETDISK_WEBUI_PORT}:5900'
+            - '${BAIDUNETDISK_WEBUI_PORT2}:5800'
+        container_name: baidunetdisk

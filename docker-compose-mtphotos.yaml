@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+    mt-photos:
+        image: mtphotos/mt-photos:latest
+        container_name: mt-photos
+        restart: unless-stopped
+        ports:
+            - '${MT_PHOTOS_WEBUI_PORT}:8063'
+        volumes:
+            - './mt_photos_upload:/upload'
+            - './mt_photos_config:/config'
+            - '${PHOTOS_PATH}:/hylphotos'
