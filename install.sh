@@ -5,12 +5,21 @@ INSTALLATION_DIRECTORY="/home/DebianNas"
 ADMIN_USERNAME="admin"
 ADMIN_PASSWORD="DebianNasPassword1."
 TZ="Asia/Shanghai"
+
 STORAGE_PATH="/home/storage"
 PHOTOS_PATH="/home/storage/photos"
 VIDEOS_PATH="/home/storage/videos"
 MUSICS_PATH="/home/storage/musics"
 NOTES_PATH="/home/storage/notes"
 DOWNLOAD_PATH="/home/storage/download"
+
+mkdir -p $STORAGE_PATH
+mkdir -p $PHOTOS_PATH
+mkdir -p $VIDEOS_PATH
+mkdir -p $MUSICS_PATH
+mkdir -p $NOTES_PATH
+mkdir -p $DOWNLOAD_PATH
+
 
 # 创建安装目录
 mkdir -p "$INSTALLATION_DIRECTORY"
