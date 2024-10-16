@@ -16,7 +16,6 @@ services:
             - UMASK_SET=022
             - PGID=1000
             - PUID=1000
-            - DOWNLOAD_PATH
         logging:
             options:
                 max-size: 1m

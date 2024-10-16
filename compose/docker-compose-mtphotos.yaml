@@ -10,5 +10,3 @@ services:
             - './mt_photos_upload:/upload'
             - './mt_photos_config:/config'
             - '${PHOTOS_PATH}:/hylphotos'
-        environment:
-            - MT_PHOTOS_WEBUI_PORT
