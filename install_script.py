@@ -16,13 +16,13 @@ os.chdir(INSTALLATION_DIRECTORY)
 
 # install docker compose
 import subprocess
-subprocess.run("curl -SL https://github.com/docker/compose/releases/download/v2.26.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose", shell=True)
+#subprocess.run("curl -SL https://github.com/docker/compose/releases/download/v2.26.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose", shell=True)
 # permission
-subprocess.run("sudo chmod +x /usr/local/bin/docker-compose", shell=True)
+#subprocess.run("sudo chmod +x /usr/local/bin/docker-compose", shell=True)
 # ln
-subprocess.run("sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose", shell=True)
+#subprocess.run("sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose", shell=True)
 # test install
-subprocess.run("docker-compose --version", shell=True)
+#ubprocess.run("docker-compose --version", shell=True)
 # Services
 
 # Portainer
@@ -52,8 +52,8 @@ FRESHRSS_WEBUI_PORT=1041
 # Create .env file
 with open('.env', 'w') as env_file:
 	env_file.write(f"INSTALLATION_DIRECTORY={INSTALLATION_DIRECTORY}\n")
-	env_file.write(f"GLOBAL_USER={GLOBAL_USER}\n")
-	env_file.write(f"GLOBAL_PASSWORD={GLOBAL_PASSWORD}\n")
+	env_file.write(f"GLOBAL_USER={ADMIN_USERNAME}\n")
+	env_file.write(f"GLOBAL_PASSWORD={ADMIN_PASSWORD}\n")
 	env_file.write(f"PORTAINER_PORT={PORTAINER_PORT}\n")
 	env_file.write(f"ALIST_PORT={ALIST_PORT}\n")
 	env_file.write(f"MT_PHOTOS_PORT={MT_PHOTOS_PORT}\n")
