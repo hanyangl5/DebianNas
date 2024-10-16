@@ -1,4 +1,4 @@
-version: '3.9'
+
 services:
     mt-photos:
         image: mtphotos/mt-photos:latest
