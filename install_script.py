@@ -1,18 +1,18 @@
 
-INSTALLATION_DIRECTORY = "/home/Debian12Nas"
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "DebianNasPassword1."
-TZ = "Asia/Shanghai"
-STORAGE_PATH = "/home/storage"
-PHOTOS_PATH = "/home/storage/photos"
-VIDEOS_PATH = "/home/storage/videos"
-MUSICS_PATH = "/home/storage/musics"
-NOTES_PATH = "/home/storage/notes"
-DOWNLOAD_PATH = "/home/storage/download"
+INSTALLATION_DIRECTORY="/home/Debian12Nas"
+ADMIN_USERNAME="admin"
+ADMIN_PASSWORD="DebianNasPassword1."
+TZ="Asia/Shanghai"
+STORAGE_PATH="/home/storage"
+PHOTOS_PATH="/home/storage/photos"
+VIDEOS_PATH="/home/storage/videos"
+MUSICS_PATH="/home/storage/musics"
+NOTES_PATH="/home/storage/notes"
+DOWNLOAD_PATH="/home/storage/download"
 
 import os
-os.makedirs(INSTALL_FOLDER, exist_ok=True)
-os.chdir(INSTALL_FOLDER)
+os.makedirs(INSTALLATION_DIRECTORY, exist_ok=True)
+os.chdir(INSTALLATION_DIRECTORY)
 
 # install docker compose
 import subprocess
@@ -51,7 +51,7 @@ FRESHRSS_WEBUI_PORT=1041
 
 # Create .env file
 with open('.env', 'w') as env_file:
-	env_file.write(f"INSTALL_FOLDER={INSTALL_FOLDER}\n")
+	env_file.write(f"INSTALLATION_DIRECTORY={INSTALLATION_DIRECTORY}\n")
 	env_file.write(f"GLOBAL_USER={GLOBAL_USER}\n")
 	env_file.write(f"GLOBAL_PASSWORD={GLOBAL_PASSWORD}\n")
 	env_file.write(f"PORTAINER_PORT={PORTAINER_PORT}\n")
