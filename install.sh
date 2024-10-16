@@ -79,7 +79,7 @@ for dir in */ ; do
     if [ -f "docker-compose.yml" ]; then
         echo "Starting docker-compose in $dir"
         # 执行docker-compose up -d命令
-        docker-compose --env-file=$INSTALLATION_DIRECTORY/.env up -d
+        docker compose --env-file=$INSTALLATION_DIRECTORY/.env up -d
     else
         echo "docker-compose.yml not found in $dir, skipping..."
     fi
