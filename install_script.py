@@ -44,7 +44,7 @@ ARIANG_PORT=1026
 NAVIDROME_WEBUI_PORT=1031
 # Baidu Netdisk
 BAIDUNETDISK_WEBUI_PORT=1036
-BAIDUNETDISK_WEBUI_PORT=1037
+BAIDUNETDISK_WEBUI_PORT2=1037
 # FreshRSS
 FRESHRSS_WEBUI_PORT=1041
 
@@ -54,18 +54,21 @@ with open('.env', 'w') as env_file:
 	env_file.write(f"INSTALLATION_DIRECTORY={INSTALLATION_DIRECTORY}\n")
 	env_file.write(f"GLOBAL_USER={ADMIN_USERNAME}\n")
 	env_file.write(f"GLOBAL_PASSWORD={ADMIN_PASSWORD}\n")
-	env_file.write(f"PORTAINER_PORT={PORTAINER_PORT}\n")
+	env_file.write(f"PORTAINER_HTTP_PORT={PORTAINER_HTTP_PORT}\n")
+	env_file.write(f"PORTAINER_HTTPS_PORT={PORTAINER_HTTPS_PORT}\n")
+	env_file.write(f"PORTAINER_TCP_PORT={PORTAINER_TCP_PORT}\n")
 	env_file.write(f"ALIST_PORT={ALIST_PORT}\n")
-	env_file.write(f"MT_PHOTOS_PORT={MT_PHOTOS_PORT}\n")
+	env_file.write(f"MT_PHOTOS_WEBUI_PORT={MT_PHOTOS_WEBUI_PORT}\n")
 	env_file.write(f"QBITTORRENT_PORT={QBITTORRENT_PORT}\n")
 	env_file.write(f"ARIA2_PORT={ARIA2_PORT}\n")
 	env_file.write(f"ARIANG_PORT={ARIANG_PORT}\n")
-	env_file.write(f"NAVIDROME_PORT={NAVIDROME_PORT}\n")
-	env_file.write(f"BAIDUNETDISK_PORT={BAIDUNETDISK_PORT}\n")
-	env_file.write(f"FRESHRSS_PORT={FRESHRSS_PORT}\n")
+	env_file.write(f"NAVIDROME_WEBUI_PORT={NAVIDROME_WEBUI_PORT}\n")
+	env_file.write(f"BAIDUNETDISK_WEBUI_PORT2={BAIDUNETDISK_WEBUI_PORT2}\n")
+	env_file.write(f"FRESHRSS_WEBUI_PORT={FRESHRSS_WEBUI_PORT}\n")
 
 import os
 import yaml
+import shutil
 
 compose_folder = os.path.join(INSTALL_FOLDER, "compose")
 
@@ -76,7 +79,7 @@ for filename in os.listdir(compose_folder):
 		
 		# Create folder for the service
 		os.makedirs(service_folder, exist_ok=True)
-		
+		shutil.copyfile('.env', os.path.join(service_folder, '.env'))
 		# Read the docker-compose file
 		# with open(os.path.join(compose_folder, filename), 'r') as file:
 		# 	compose_data = yaml.safe_load(file)
