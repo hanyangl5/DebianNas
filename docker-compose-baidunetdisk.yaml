@@ -5,6 +5,9 @@ services:
         restart: unless-stopped
         environment:
             - VNC_PASSWORD=admin123
+            - DOWNLOAD_PATH
+            - BAIDUNETDISK_WEBUI_PORT
+            - BAIDUNETDISK_WEBUI_PORT2
         volumes:
             - '${DOWNLOAD_PATH}:/config/downloads'
             - './baidunetdisk_config:/config'
