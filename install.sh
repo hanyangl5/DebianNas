@@ -50,6 +50,12 @@ cat > .env <<EOF
 INSTALLATION_DIRECTORY=$INSTALLATION_DIRECTORY
 GLOBAL_USER=$ADMIN_USERNAME
 GLOBAL_PASSWORD=$ADMIN_PASSWORD
+STORAGE_PATH=$STORAGE_PATH
+PHOTOS_PATH=$PHOTOS_PATH
+VIDEOS_PATH=$VIDEOS_PATH
+MUSICS_PATH=$MUSICS_PATH
+NOTES_PATH=$NOTES_PATH
+DOWNLOAD_PATH=$DOWNLOAD_PATH
 PORTAINER_HTTP_PORT=$PORTAINER_HTTP_PORT
 PORTAINER_HTTPS_PORT=$PORTAINER_HTTPS_PORT
 PORTAINER_TCP_PORT=$PORTAINER_TCP_PORT
@@ -61,30 +67,25 @@ ARIANG_PORT=$ARIANG_PORT
 NAVIDROME_WEBUI_PORT=$NAVIDROME_WEBUI_PORT
 BAIDUNETDISK_WEBUI_PORT2=$BAIDUNETDISK_WEBUI_PORT2
 FRESHRSS_WEBUI_PORT=$FRESHRSS_WEBUI_PORT
-STORAGE_PATH=$STORAGE_PATH
-PHOTOS_PATH=$PHOTOS_PATH
-VIDEOS_PATH=$VIDEOS_PATH
-MUSICS_PATH=$MUSICS_PATH
-NOTES_PATH=$NOTES_PATH
-DOWNLOAD_PATH=$DOWNLOAD_PATH
+
 EOF
 
-# 定义compose文件夹路径
-COMPOSE_FOLDER="$INSTALLATION_DIRECTORY/compose"
-
-# 遍历compose文件夹中的yaml文件
-for filename in "$COMPOSE_FOLDER"/*docker-compose-*.yaml; do
-    if [ -f "$filename" ]; then
-        service_name=$(echo "$filename" | sed 's/.*docker-compose-\(.*\)\.yaml/\1/')
-        service_folder="$INSTALLATION_DIRECTORY/$service_name"
-
-        # 创建服务文件夹
-        mkdir -p "$service_folder"
-        #cp .env "$service_folder/.env"
-
-        # 进入服务文件夹并启动docker容器
-        cd "$service_folder"
-        docker compose -f "$filename" --env-file=$INSTALLATION_DIRECTORY/.env up -d
-        cd "$INSTALLATION_DIRECTORY"
+# 遍历当前目录下的所有文件夹
+for dir in */ ; do
+    # 进入文件夹
+    cd "$dir"
+    
+    # 检查是否存在docker-compose.yml文件
+    if [ -f "docker-compose.yml" ]; then
+        echo "Starting docker-compose in $dir"
+        # 执行docker-compose up -d命令
+        docker-compose --env-file=$INSTALLATION_DIRECTORY/.env up -d
+    else
+        echo "docker-compose.yml not found in $dir, skipping..."
     fi
+    
+    # 返回上一级目录
+    cd ..
 done
+
+echo "All directories processed."
